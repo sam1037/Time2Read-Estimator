@@ -1,1 +1,2 @@
-Test
+This chrome extension is modified from ....
+This extension aims to estimate the reading time for news, documents etc on different websites.
