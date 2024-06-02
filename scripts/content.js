@@ -77,6 +77,8 @@ function estimateTime() {
   //display
   if (date || heading) {
     (date ?? heading).insertAdjacentElement("afterend", badge);
+    console.log("%cInserted reading time estimation: ", "font-weight: bold")
+    console.log(`${badge.textContent}`);
   }
   else {
     console.log("cannot insert the estimated time");
