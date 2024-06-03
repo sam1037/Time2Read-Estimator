@@ -54,33 +54,37 @@ function estimateTime() {
     articleElement.style.outline = "3px solid red";
   }
 
-  //estimate the reading time
+  //estimate the reading time (case chin and case eng text)
   if (isChinese()) {
-    text = text.replace(/\s+/g, ""); //filter out white space, do i need to do the same for eng?
-    console.log(`filtered chin text: \n${text}`);
+    text = text.replace(/\s+/g, ""); 
+    console.debug(`filtered chin text: \n${text}`);
     var wordCount = text.length;
     var readingTime = Math.ceil(wordCount / chiReadingSpeed);
   }
   else {
-    const wordMatchRegExp = /[^\s]+/g; // Regular expression
+    const wordMatchRegExp = /[^\s]+/g;
     const words = text.matchAll(wordMatchRegExp);
-    //TODO: print out the words for debug purposes
-    var wordCount = [...words].length;
+    const extractedWords = [...words].map(match => match[0]);
+    
+    //print out the words for debug purposes
+    const joinedWords = extractedWords.join(' ');
+    console.debug(typeof(joinedWords), joinedWords);
+    
+    var wordCount = extractedWords.length;
     var readingTime = Math.ceil(wordCount / enReadingSpeed);
   }
 
   //create the badge
   const badge = document.createElement("p");
-  badge.id = "myBadge";
   badge.classList.add("time-estimation");
   badge.textContent = `(${readingTime} min read)`;
 
   const heading = document.querySelector("h1");
-  const date = articleElement.querySelector("time")?.parentNode; //?
+  //const date = articleElement.querySelector("time")?.parentNode; //?
 
   //create the span element
   //TODO: style it w/ a sepearte css file and link together, also change the style
-  //TODO: check style of websites that have built in time estimation for articles like medium
+  /*
   const spanElement = document.createElement("span");
   spanElement.style.fontWeight = "bold";
   spanElement.style.backgroundColor = "yellow";
@@ -90,7 +94,7 @@ function estimateTime() {
   console.log(spanElement);
 
   //display (span element)
-  /*if (heading) {
+  if (heading) {
     console.log(heading);
     console.log(heading.textContent);
     
@@ -99,22 +103,16 @@ function estimateTime() {
     return;
   }
   */
-  //()
+  
+  //insert the badge under under heading
   if (heading) {
     heading.insertAdjacentElement("beforeend", badge);
-    //print style of the badge for debug
+    //modify the badge's font size and color
+    //TODO: seperate this into the css file
     const headingStyles = window.getComputedStyle(heading);
     const headingFontSize = headingStyles.getPropertyValue("font-size");
-    const headingFontFamily = headingStyles.getPropertyValue('font-family');
-    const badgeFontFamily = "nyt-cheltenham-cond, nyt-cheltenham, cheltenham-fallback-georgia";
+    const badgeFontSize = parseFloat(headingFontSize) * 0.7;
 
-    let badgeFontSize = parseFloat(headingFontSize) * 0.7;
-    console.log("heading font size: ", headingFontSize);
-    console.log("badge font size: ", badgeFontSize);
-    console.log("heaing font family: ", headingFontFamily);
-
-    //modify style of the badge 
-    //TODO: seperate this into the css file
     badge.style.setProperty("font-size", String(badgeFontSize)+'px');
     badge.style.setProperty("color", "grey");
     //badge.style.setProperty("font-family", badgeFontFamily);
@@ -123,7 +121,7 @@ function estimateTime() {
     console.log(`${badge.textContent}`);
   }
   else {
-    console.log("cannot insert the estimated time (no h1 heading found)");
+    console.log("%ccannot insert the estimated time (No h1 heading found)", "font-weight: bold");
   }
 }
 
@@ -144,7 +142,7 @@ function observerCallback() {
   //check if article exist
   const article = document.querySelector("article");
   if (!article) {
-    console.log("No article found");
+    console.log("%cNo article found", "font-weight: bold");
     return;
   }
 
