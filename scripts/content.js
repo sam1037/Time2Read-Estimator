@@ -18,7 +18,7 @@ function isChinese() {
   }
   return false;
 }
-
+  
 // Function to check if an element is visible
 function isVisible(elem) {
   return !(window.getComputedStyle(elem).display === 'none' || window.getComputedStyle(elem).visibility === 'hidden');

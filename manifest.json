@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Time2Read Estimator",
   "version": "0.0.1",
-  "description": "Time2Read Estimator is an extension that estimates the time to read articles/ documentations on websites",
+  "description": "This extension estimates the reading time of articles/ documentations/ news and display it under the title",
   "icons": {
     "16": "images/T2R1.png",
     "32": "images/T2R1.png",
@@ -25,5 +25,8 @@
       ],
       "type": "module"
     }
-  ]
+  ],
+  "background": {
+    "service_worker": "scripts/background.js"
+  }
 }
