@@ -1,4 +1,5 @@
-//import camelCase from '../node_modules/camelCase';
+//import camelCase from '../node_modules/camelCase'; MODULES DOESN'T WORK FOR SOME REASON
+//import {getFilteredArticleText} from "./helper.js";
 
 const enReadingSpeed = 200;
 const chiReadingSpeed = 250;
@@ -26,6 +27,7 @@ function isVisible(elem) {
 
 //return the filtered article text 
 //TODO: some room of improvements
+
 function getFilteredArticleText(article) {
   //filter scripts
   article.querySelectorAll('script').forEach(script => script.remove());
@@ -38,8 +40,7 @@ function getFilteredArticleText(article) {
   });
 
   return article.textContent;
-}
-
+} 
 
 //estimate the time and insert the estimation
 function estimateTime() {
@@ -81,28 +82,6 @@ function estimateTime() {
 
   const heading = document.querySelector("h1");
   //const date = articleElement.querySelector("time")?.parentNode; //?
-
-  //create the span element
-  //TODO: style it w/ a sepearte css file and link together, also change the style
-  /*
-  const spanElement = document.createElement("span");
-  spanElement.style.fontWeight = "bold";
-  spanElement.style.backgroundColor = "yellow";
-  spanElement.classList.add("time-estimation");
-  spanElement.textContent = `${readingTime} min read`;
-  console.log("%c span element: ", "font-weight: bold");
-  console.log(spanElement);
-
-  //display (span element)
-  if (heading) {
-    console.log(heading);
-    console.log(heading.textContent);
-    
-    heading.appendChild(spanElement);
-    badge.style.display = "none";
-    return;
-  }
-  */
   
   //insert the badge under under heading
   if (heading) {
@@ -127,6 +106,8 @@ function estimateTime() {
 
 
 function observerCallback() {
+  //check if the extension is on or off
+  
   //check if the sites is ready
   if (document.readyState != 'complete' && document.readyState != 'interactive') {
     console.log(`doc ready state: ${document.readyState}`);
@@ -155,5 +136,6 @@ function observerCallback() {
 //main logic
 const config = { attributes: false, childList: true, subtree: true };
 const observer = new MutationObserver(observerCallback);
-observer.observe(document, config); 
-observerCallback(); 
+observer.observe(document, config); //working in the background?
+console.log("should get here!");
+observerCallback(); //manually 1st time call it
