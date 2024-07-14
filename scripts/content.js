@@ -9,6 +9,8 @@ console.log("%ccontent script running", "font-weight: bold");
 console.log(`English reading speed: ${enReadingSpeed}`);
 console.log(`Chinese reading speed: ${chiReadingSpeed}`);
 
+console.log("some experimental features made");
+
 
 //determine if the text is chinese of not
 function isChinese() {
@@ -114,7 +116,8 @@ function observerCallback() {
     return;
   }
 
-  //check if already estimated time for the web page
+  //TODO: need some modification for (1. updated article length, 2. ?)
+  //check if already estimated time for the web page 
   if (document.querySelector(".time-estimation")) {
     console.log("Time2Read has already been estimated");
     return;
