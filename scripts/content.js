@@ -9,7 +9,7 @@ console.log("%ccontent script running", "font-weight: bold");
 console.log(`English reading speed: ${enReadingSpeed}`);
 console.log(`Chinese reading speed: ${chiReadingSpeed}`);
 
-console.log("some experimental features made");
+console.log("some experimental features made, test");
 
 
 //determine if the text is chinese of not

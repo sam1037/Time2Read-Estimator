@@ -28,5 +28,14 @@
   ],
   "background": {
     "service_worker": "scripts/background.js"
+  },
+  "commands": {
+    "toggle-estimation": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+2",
+        "mac": "Command+B"
+      },
+    "description": "toggle estimation description"
+    }	
   }
 }
