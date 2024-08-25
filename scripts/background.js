@@ -18,7 +18,6 @@ chrome.commands.onCommand.addListener(function (command) {
   }
 });
 
+//function to toggle estimation
 
-function toggle_estimation(){
-  console.log("toggle estimation function called");
-}
+
