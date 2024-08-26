@@ -18,6 +18,19 @@ chrome.commands.onCommand.addListener(function (command) {
   }
 });
 
-//function to toggle estimation
+//toggle estimation by sending a message to the content script
+function toggle_estimation() {
+  console.log("toggle_estimation() running");
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, { message: "toggle-estimation" });
+  });
+}
+
+function tester() {
+  chrome.tabs.query({ currentWindow: true }, function(tabs) {
+    // tabs is an array of Tab objects representing the tabs in the current window
+    alert('Tabs in the current window:', tabs);
+  });
+}
 
 

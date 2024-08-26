@@ -96,6 +96,7 @@ function estimateTime() {
 
     badge.style.setProperty("font-size", String(badgeFontSize)+'px');
     badge.style.setProperty("color", "grey");
+    badge.style.setProperty("display", "block");
     //badge.style.setProperty("font-family", badgeFontFamily);
 
     console.log("%cInserted reading time estimation: ", "font-weight: bold")
@@ -135,10 +136,35 @@ function observerCallback() {
   observer.observe(document, config);
 }
 
+function listenForToggleEstimation() {
+  chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+    if (message.message === "toggle-estimation") {
+      alert("toggle estimation function called");
+      //make the estimation badge disappear
+      const badge = document.querySelector(".time-estimation");
+      if (!badge) {
+        return;
+      }
+      alert("display of badge: " + badge.style.getPropertyValue("display"));
+
+      //if badge is not hidden, hide it with css
+      if (badge.style.getPropertyValue("display") != "none") {
+        alert("removing the badge");
+        badge.style.setProperty("display", "none");
+      }
+      //unhide the badge if it is hidden
+      else {
+        alert("restoring the badge");
+        badge.style.setProperty("display", "block");
+      }
+    }
+  });
+}
 
 //main logic
 const config = { attributes: false, childList: true, subtree: true };
 const observer = new MutationObserver(observerCallback);
 observer.observe(document, config); //working in the background?
+listenForToggleEstimation(); //listen for the toggle estimation message
 console.log("should get here!");
 observerCallback(); //manually 1st time call it
