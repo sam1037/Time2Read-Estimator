@@ -136,26 +136,24 @@ function observerCallback() {
   observer.observe(document, config);
 }
 
+//listen for the toggle estimation message
 function listenForToggleEstimation() {
   chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     if (message.message === "toggle-estimation") {
-      alert("toggle estimation function called");
-      //make the estimation badge disappear
+      //toggle the estimation's display
       const badge = document.querySelector(".time-estimation");
       if (!badge) {
         return;
       }
-      alert("display of badge: " + badge.style.getPropertyValue("display"));
-
       //if badge is not hidden, hide it with css
       if (badge.style.getPropertyValue("display") != "none") {
-        alert("removing the badge");
         badge.style.setProperty("display", "none");
+        sendResponse({setBadgeTextTo: "OFF"});
       }
       //unhide the badge if it is hidden
       else {
-        alert("restoring the badge");
         badge.style.setProperty("display", "block");
+        sendResponse({setBadgeTextTo: "ON"});
       }
     }
   });
