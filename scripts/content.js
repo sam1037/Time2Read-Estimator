@@ -9,7 +9,7 @@ console.log("%ccontent script running", "font-weight: bold");
 console.log(`English reading speed: ${enReadingSpeed}`);
 console.log(`Chinese reading speed: ${chiReadingSpeed}`);
 
-console.log("some experimental features made");
+console.log("some experimental features made, test");
 
 
 //determine if the text is chinese of not
@@ -96,6 +96,7 @@ function estimateTime() {
 
     badge.style.setProperty("font-size", String(badgeFontSize)+'px');
     badge.style.setProperty("color", "grey");
+    badge.style.setProperty("display", "block");
     //badge.style.setProperty("font-family", badgeFontFamily);
 
     console.log("%cInserted reading time estimation: ", "font-weight: bold")
@@ -135,10 +136,33 @@ function observerCallback() {
   observer.observe(document, config);
 }
 
+//listen for the toggle estimation message
+function listenForToggleEstimation() {
+  chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+    if (message.message === "toggle-estimation") {
+      //toggle the estimation's display
+      const badge = document.querySelector(".time-estimation");
+      if (!badge) {
+        return;
+      }
+      //if badge is not hidden, hide it with css
+      if (badge.style.getPropertyValue("display") != "none") {
+        badge.style.setProperty("display", "none");
+        sendResponse({setBadgeTextTo: "OFF"});
+      }
+      //unhide the badge if it is hidden
+      else {
+        badge.style.setProperty("display", "block");
+        sendResponse({setBadgeTextTo: "ON"});
+      }
+    }
+  });
+}
 
 //main logic
 const config = { attributes: false, childList: true, subtree: true };
 const observer = new MutationObserver(observerCallback);
 observer.observe(document, config); //working in the background?
+listenForToggleEstimation(); //listen for the toggle estimation message
 console.log("should get here!");
 observerCallback(); //manually 1st time call it
