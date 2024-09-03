@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Time2Read Estimator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "This extension estimates the reading time of articles/ documentations/ news and display it under the title",
   "icons": {
     "16": "images/T2R1.png",
@@ -33,9 +33,9 @@
     "toggle-estimation": {
       "suggested_key": {
         "default": "Ctrl+Shift+2",
-        "mac": "Command+B"
+        "mac": "Command+Shift+2"
       },
-    "description": "toggle estimation description"
+    "description": "toggle the estimation for the current tab by hitting Ctrl+Shift+2, or Command+Shift+2 on Mac"
     }	
   }
 }
