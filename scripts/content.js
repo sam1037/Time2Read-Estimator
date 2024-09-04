@@ -142,18 +142,21 @@ function listenForToggleEstimation() {
     if (message.message === "toggle-estimation") {
       //toggle the estimation's display
       const badge = document.querySelector(".time-estimation");
+      //if badge is not found
       if (!badge) {
+        console.log("toggle estimation: no badge found");
+        //sendResponse({setBadgeTextTo: "OFF"});
         return;
       }
-      //if badge is not hidden, hide it with css
+      //if badge is visible, hide it with css
       if (badge.style.getPropertyValue("display") != "none") {
         badge.style.setProperty("display", "none");
-        sendResponse({setBadgeTextTo: "OFF"});
+        //sendResponse({setBadgeTextTo: "OFF"});
       }
       //unhide the badge if it is hidden
       else {
         badge.style.setProperty("display", "block");
-        sendResponse({setBadgeTextTo: "ON"});
+        //sendResponse({setBadgeTextTo: "ON"});
       }
     }
   });

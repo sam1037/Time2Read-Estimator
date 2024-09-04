@@ -1,11 +1,14 @@
 //wtf is this about?
+/*
 chrome.runtime.onInstalled.addListener(() => {
 	console.log("on installed event happened");
   //set badge to be ON
+  console.log("set badge text to ON on Installed");
   chrome.action.setBadgeText({
     text: "ON",
   });
 });
+*/
 
 //listen for command of toggling the estimation
 chrome.commands.onCommand.addListener(function (command) {
@@ -33,15 +36,7 @@ function sendMsgGivenTabID(tabID){
   //toggle the estimation display by sending a message 
   chrome.tabs.sendMessage(
     tabID, 
-    {message: "toggle-estimation", currentTabID: tabID }, 
-    function(response) { //callback function for toggling the badge text for current tab
-      console.log("response from the content script: ", response);
-      if (response.setBadgeTextTo === "ON") {
-        chrome.action.setBadgeText({ text: "ON", tabId: tabID });
-      } else {
-        chrome.action.setBadgeText({ text: "OFF", tabId: tabID });
-      }
-    }
+    {message: "toggle-estimation", currentTabID: tabID }
   );
 }
 
