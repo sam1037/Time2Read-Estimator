@@ -15,7 +15,8 @@
       "32": "images/T2R1.png",
       "48": "images/T2R1.png",
       "128": "images/T2R1.png"
-    }
+    },
+    "default_popup": "popup.html"
   },
   "content_scripts": [
     {
