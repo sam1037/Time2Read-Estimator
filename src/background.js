@@ -1,14 +1,9 @@
-//wtf is this about?
-/*
+const camelCase = require('camelcase');
+
 chrome.runtime.onInstalled.addListener(() => {
 	console.log("on installed event happened");
-  //set badge to be ON
-  console.log("set badge text to ON on Installed");
-  chrome.action.setBadgeText({
-    text: "ON",
-  });
+  console.log(camelCase.default("foo-bar"));
 });
-*/
 
 //listen for command of toggling the estimation
 chrome.commands.onCommand.addListener(function (command) {

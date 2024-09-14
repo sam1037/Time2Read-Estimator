@@ -4,23 +4,23 @@
   "version": "0.0.3",
   "description": "This extension estimates the reading time of articles/ documentations/ news and display it under the title",
   "icons": {
-    "16": "assets/img/T2R1.png",
-    "32": "assets/img/T2R1.png",
-    "48": "assets/img/T2R1.png",
-    "128": "assets/img/T2R1.png"
+    "16": "img/T2R1.png",
+    "32": "img/T2R1.png",
+    "48": "img/T2R1.png",
+    "128": "img/T2R1.png"
   },
   "action": {
     "default_icon": {
-      "16": "assets/img/T2R1.png",
-      "32": "assets/img/T2R1.png",
-      "48": "assets/img/T2R1.png",
-      "128": "assets/img/T2R1.png"
+      "16": "img/T2R1.png",
+      "32": "img/T2R1.png",
+      "48": "img/T2R1.png",
+      "128": "img/T2R1.png"
     },
-    "default_popup": "src/popup.html"
+    "default_popup": "popup.html"
   },
   "content_scripts": [
     {
-      "js": ["src/content.js"],
+      "js": ["content.js"],
       "matches": [
         "<all_urls>"
       ],
@@ -28,7 +28,7 @@
     }
   ],
   "background": {
-    "service_worker": "src/background.js"
+    "service_worker": "background.js"
   },
   "commands": {
     "toggle-estimation": {

@@ -5,11 +5,15 @@
     ]
   },
   "scripts": {
-    "start": "xt-build -e dev -w",
-    "build": "xt-build -e prod",
-    "clean": "xt-clean",
-    "docs": "xt-docs",
-    "test": "xt-test",
-    "coverage": "nyc --reporter=lcov npm run test"
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^12.0.2",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.5.0",
+    "camelcase": "^8.0.0"
   }
 }
