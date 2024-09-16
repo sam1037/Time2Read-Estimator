@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Time2Read Estimator",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "This extension estimates the reading time of articles/ documentations/ news and display it under the title",
   "icons": {
     "16": "img/T2R1.png",

@@ -1,5 +1,11 @@
 # Time2Read Estimator
 
+## Change log
+
+v1.0.0: made the extension works on more website by using the package readability
+
+---
+
 This extension aims to estimate the reading time for news, documents etc on different websites.
 
 Name of the extension: Time2Read Estimator (changed from Reading Time Plus)
