@@ -2,3 +2,4 @@ test.txt
 *.excalidraw
 node_modules
 dist
+*.zip
