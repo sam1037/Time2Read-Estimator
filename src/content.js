@@ -1,5 +1,5 @@
 //import camelCase from '../node_modules/camelCase'; MODULES DOESN'T WORK FOR SOME REASON
-//import {getFilteredArticleText} from "./helper.js";
+import {isCurrentTabBlacklisted} from "./helper.js";
 
 var { Readability } = require('@mozilla/readability');
 
@@ -181,20 +181,30 @@ function estimateAndInsert() {
 
 
 function observerCallback() {
-  //check if the extension is on or off
-  
   //check if the sites is ready
   if (document.readyState != 'complete' && document.readyState != 'interactive') {
     console.log(`%cdoc ready state: ${document.readyState}`, "font-weight: bold");
     return;
   }
 
+  //check if the current tab is in blacklist or not
+  isCurrentTabBlacklisted().then((isBlacklisted) => {
+    if (isBlacklisted) {
+      console.log("%ccurrent tab is blacklisted!", "font-weight: bold");
+    } 
+    else {
+      console.log("hello darkness my old friend")
+    };
+  });
+
   //TODO: need some modification for (1. updated article length, 2. ?)
   //check if already estimated time for the web page 
+  
   if (document.querySelector(".time-estimation")) {
     console.log("%cTime2Read has already been estimated", "font-weight: bold");
     return;
   }
+  
 
   //check if can find the title
   const title = getArticleTitleElement();

@@ -1,34 +1,37 @@
 console.log("%cpopup.js loaded", "font-weight: bold");
 
 document.addEventListener("DOMContentLoaded", function () {
-	//get the button from popup.html
+	//blacklist btn
 	const button = document.querySelector(".blacklistButton");
 	button.addEventListener("click", function () {
 		console.log("blacklist button clicked");
-		alert("button clicked");
+		//alert("button clicked");
 
-		//get the input from popup.html
+		//get the input from popup.html and clear it
 		const input = document.getElementsByClassName("blacklistInput")[0];
 		let blacklistPattern = input.value;
 		console.log(`blacklistPattern: ${blacklistPattern}`);
-		//alert(`blacklistPattern: ${blacklistPattern}`);
+		input.value = "";
+
 
 		saveBlacklistPattern(blacklistPattern);
 	});
 
+	//show the synced array
 	const testBtn = document.querySelector(".testButton");
 	testBtn.addEventListener("click", function () {
 		console.log("test button clicked");
-		chrome.storage.sync.get(["testKey"]).then((result) => {
-			if (result.testKey) {
-				console.log("testKey found");
-				console.log(result.testKey);
+		chrome.storage.sync.get(["blacklistArr"]).then((result) => {
+			if (result.blacklistArr) {
+				console.log("blacklistArr found");
+				console.log(result.blacklistArr);
 			} else {
-				console.log("testKey not found");
+				console.log("blacklistArr not found");
 			}
 		});
 	});
 
+	//clear all stored item
 	const clearBtn = document.querySelector(".clearButton");
 	clearBtn.addEventListener("click", function () {
 		console.log("clear button clicked");
@@ -42,9 +45,15 @@ document.addEventListener("DOMContentLoaded", function () {
 function saveBlacklistPattern(blacklistPattern) {
 	console.log("saveBlacklistPattern called");
 
-	chrome.storage.sync.set({ "testKey": blacklistPattern }).then(() => {
-		console.log("Value is set");
+	// get the array of blacklist urls, modify and save it
+	let newArr = []
+	chrome.storage.sync.get(["blacklistArr"]).then((result) => {
+		if (result.blacklistArr){	
+			newArr = result.blacklistArr;
+		}
+		newArr.push(blacklistPattern)
+
+		//save the modified array	
+		chrome.storage.sync.set({"blacklistArr": newArr});
 	});
-	  
-	  
 }

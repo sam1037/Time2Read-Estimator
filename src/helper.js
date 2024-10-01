@@ -28,3 +28,24 @@ export function getFilteredArticleText(article) {
 
   return article.textContent;
 }
+
+export function isCurrentTabBlacklisted(){
+  //get current tab's url
+  const currentUrl = window.location.href;
+  console.log(`current url: ${currentUrl}`);
+  //check if current tab's url is within the blacklist
+  chrome.storage.sync.get(["blacklistArr"]).then((result) => {
+    if (result.blacklistArr) {
+      const arr = result.blacklistArr;
+      console.log(arr);
+      //for now, we just do an exact match TODO improve later
+      if (arr.includes(currentUrl)) {
+        console.log("should get here");
+        return true;
+      }
+    }
+    console.log("should not get here");
+    return false;
+  });
+  
+}
