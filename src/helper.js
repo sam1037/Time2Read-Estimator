@@ -29,12 +29,27 @@ export function getFilteredArticleText(article) {
   return article.textContent;
 }
 
-export function isCurrentTabBlacklisted(){
+export async function isCurrentTabBlacklisted(){
   //get current tab's url
   const currentUrl = window.location.href;
   console.log(`current url: ${currentUrl}`);
+  
+  //return a promise abt if the current tab is in the blacklist or not
+  let res = await chrome.storage.sync.get(["blacklistArr"]);
+  if (res.blacklistArr) {
+    const arr = res.blacklistArr;
+    console.log(arr);
+    if (arr.includes(currentUrl)) {
+      console.log("should get here (from func isCurrentTabBlacklisted())");
+      return true;
+    }
+  }
+
+  return false;
+
+  /*
   //check if current tab's url is within the blacklist
-  chrome.storage.sync.get(["blacklistArr"]).then((result) => {
+  return chrome.storage.sync.get(["blacklistArr"]).then((result) => {
     if (result.blacklistArr) {
       const arr = result.blacklistArr;
       console.log(arr);
@@ -47,5 +62,5 @@ export function isCurrentTabBlacklisted(){
     console.log("should not get here");
     return false;
   });
-  
+ */ 
 }

@@ -180,7 +180,7 @@ function estimateAndInsert() {
 }
 
 
-function observerCallback() {
+async function observerCallback() {
   //check if the sites is ready
   if (document.readyState != 'complete' && document.readyState != 'interactive') {
     console.log(`%cdoc ready state: ${document.readyState}`, "font-weight: bold");
@@ -188,14 +188,15 @@ function observerCallback() {
   }
 
   //check if the current tab is in blacklist or not
-  isCurrentTabBlacklisted().then((isBlacklisted) => {
-    if (isBlacklisted) {
-      console.log("%ccurrent tab is blacklisted!", "font-weight: bold");
-    } 
-    else {
-      console.log("hello darkness my old friend")
-    };
-  });
+  //TODO
+  let blacklistBool = await isCurrentTabBlacklisted()
+  if (blacklistBool) {
+    console.log("%ccurrent tab is in blacklist!", "font-weight: bold");
+    return;
+  }
+  else {
+    console.log("current tab is not in blacklist");
+  }
 
   //TODO: need some modification for (1. updated article length, 2. ?)
   //check if already estimated time for the web page 
