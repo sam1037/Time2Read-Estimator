@@ -24,7 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		chrome.storage.sync.get(["blacklistArr"]).then((result) => {
 			if (result.blacklistArr) {
 				console.log("blacklistArr found");
-				console.log(result.blacklistArr);
+				const numberedList = result.blacklistArr.map((item, index) => `${index + 1}. ${item}`);
+				alert(numberedList.join('\n'));
 			} else {
 				console.log("blacklistArr not found");
 			}
@@ -43,6 +44,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //function to save the blacklist pattern and msg content script, para blacklistPattern should be a regex
 function saveBlacklistPattern(blacklistPattern) {
+	//check if pattern is valid or not
+	if (!blacklistPattern) {
+		console.log("invalid blacklist pattern");
+		return;
+	}
+	
 	console.log("saveBlacklistPattern called");
 
 	// get the array of blacklist urls, modify and save it
