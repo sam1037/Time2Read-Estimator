@@ -31,6 +31,12 @@ p {
     margin-bottom: 10px;
 }
 
+li {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
 /* Table styles */
 .blacklistTable {
     width: 100%;
@@ -38,10 +44,29 @@ p {
     margin-bottom: 20px;
 }
 
+
+
+
 .blacklistTable th, .blacklistTable td {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: left;
+    
+}
+
+.blacklistTable th:nth-child(1){
+    width: 80%;
+    user-select: none;
+}
+
+.blacklistTable th:nth-child(2){
+    width: 15%;
+    text-align: center;
+    user-select: none;
+}
+
+.blacklistTable td:nth-child(2){
+    text-align: center;
 }
 
 .blacklistTable th {

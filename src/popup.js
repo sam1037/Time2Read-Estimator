@@ -17,7 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		saveBlacklistPattern(blacklistPattern);
 	});
 
-	//show the synced array
+	/*
+	//show the synced array (handle the test btn)
 	const testBtn = document.querySelector(".testButton");
 	testBtn.addEventListener("click", function () {
 		console.log("test button clicked");
@@ -31,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		});
 	});
+	*/
 
 	/*
 	//clear all stored item
