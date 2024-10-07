@@ -3,7 +3,7 @@
   "name": "Time2Read Estimator",
   "version": "1.0.0",
   "description": "This extension estimates the reading time of articles/ documentations/ news and display it under the title",
-  "permissions": ["storage"],
+  "permissions": ["storage", "tabs"],
   "icons": {
     "16": "img/T2R1.png",
     "32": "img/T2R1.png",
