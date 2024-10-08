@@ -2,6 +2,7 @@
 
 ## Change log
 
+v1.1.0: added blacklist feature, enable user to diable to extension on certain websites
 v1.0.0: made the extension works on more website by using the package readability
 
 ## What is this project about
