@@ -1,5 +1,5 @@
 //import camelCase from '../node_modules/camelCase'; MODULES DOESN'T WORK FOR SOME REASON
-//import {getFilteredArticleText} from "./helper.js";
+import {isCurrentTabBlacklisted} from "./helper.js";
 
 var { Readability } = require('@mozilla/readability');
 
@@ -61,7 +61,7 @@ function getArticleTitleElement() {
 
   //return the title element based on the parsed title str
   const parsedTitleStr = getParsedTitleStr();
-  const tagArr = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'p', 'a', 'div'];
+  const tagArr = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a'];
   for (const tag of tagArr) {
     for (const candidate of document.querySelectorAll(tag)) {
       if (candidate.textContent.includes(parsedTitleStr)) {
@@ -180,21 +180,32 @@ function estimateAndInsert() {
 }
 
 
-function observerCallback() {
-  //check if the extension is on or off
-  
+async function observerCallback() {
   //check if the sites is ready
   if (document.readyState != 'complete' && document.readyState != 'interactive') {
     console.log(`%cdoc ready state: ${document.readyState}`, "font-weight: bold");
     return;
   }
 
+  //check if the current tab is in blacklist or not
+  //TODO
+  let blacklistBool = await isCurrentTabBlacklisted()
+  if (blacklistBool) {
+    console.log("%ccurrent tab is in blacklist!", "font-weight: bold");
+    return;
+  }
+  else {
+    console.log("current tab is not in blacklist");
+  }
+
   //TODO: need some modification for (1. updated article length, 2. ?)
   //check if already estimated time for the web page 
+  
   if (document.querySelector(".time-estimation")) {
     console.log("%cTime2Read has already been estimated", "font-weight: bold");
     return;
   }
+  
 
   //check if can find the title
   const title = getArticleTitleElement();

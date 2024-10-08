@@ -1,0 +1,147 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    max-width: 600px; /* Set a maximum width for the page */
+    margin: 0 auto; /* Center the page horizontally */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+li {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* Table styles */
+.blacklistTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+
+
+
+.blacklistTable th, .blacklistTable td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    
+}
+
+.blacklistTable th:nth-child(1){
+    width: 80%;
+    user-select: none;
+}
+
+.blacklistTable th:nth-child(2){
+    width: 15%;
+    text-align: center;
+    user-select: none;
+}
+
+.blacklistTable td:nth-child(2){
+    text-align: center;
+}
+
+.blacklistTable th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.blacklistTable td {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Input and button container */
+.input-container {
+    display: flex;
+    gap: 10px; /* Space between input and button */
+    margin-bottom: 10px;
+}
+
+/* Input styles */
+#blacklistInput {
+    flex: 1; /* Take up remaining space */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Button styles */
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    background-color: #004494;
+}
+
+/* Specific button styles */
+#addBlacklistButton {
+    background-color: #28a745;
+}
+
+#addBlacklistButton:hover {
+    background-color: #218838;
+}
+
+#addBlacklistButton:active {
+    background-color: #1e7e34;
+}
+
+/* Remove button styles */
+.remove {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.remove:hover {
+    background-color: #c82333;
+}
+
+.remove:active {
+    background-color: #bd2130;
+}
