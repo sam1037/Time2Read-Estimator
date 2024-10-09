@@ -56,6 +56,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		console.log(tabs);
 	});
 
+	//set input's default value to current tab's url
+	setInputDefaultValue();
+
 	//update the status of blacklist when popup is opened
 	updateStatus();
 	//update the status and refresh current tab when storage.sync on changed
@@ -144,6 +147,21 @@ function handleStorageChange() {
         });
 
 	});
+}
+
+async function setInputDefaultValue(){
+	//get current tab's url
+	let activeTabs = await chrome.tabs.query({ active: true, currentWindow: true });
+	let currentUrl = activeTabs[0].url;
+	console.log(`current url: ${currentUrl}`);
+
+	//clean the url to get only the schema and host
+	const urlObj = new URL(currentUrl);
+    const cleanedUrl = `${urlObj.protocol}//${urlObj.host}/*`;
+
+	//get the input elment and modify its value
+	const input = document.getElementsByClassName("blacklistInput")[0];
+	input.value = cleanedUrl;
 }
 
 
