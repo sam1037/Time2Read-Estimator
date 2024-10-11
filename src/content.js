@@ -61,7 +61,7 @@ function getArticleTitleElement() {
 
   //return the title element based on the parsed title str
   const parsedTitleStr = getParsedTitleStr();
-  const tagArr = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a'];
+  const tagArr = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
   for (const tag of tagArr) {
     for (const candidate of document.querySelectorAll(tag)) {
       if (candidate.textContent.includes(parsedTitleStr)) {
