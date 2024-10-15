@@ -179,6 +179,14 @@ function estimateAndInsert() {
   }
 }
 
+//debounce function to limit the rate of calling observerCallback
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
 
 async function observerCallback() {
   //check if the sites is ready
@@ -256,9 +264,10 @@ function listenForToggleEstimation() {
 }
 
 //main logic
+const debouncedObserverCallback = debounce(observerCallback, 500);
 const config = { attributes: false, childList: true, subtree: true };
-const observer = new MutationObserver(observerCallback);
+const observer = new MutationObserver(debouncedObserverCallback);
 observer.observe(document, config); //working in the background?
 listenForToggleEstimation(); //listen for the toggle estimation message
 console.log("should get here!");
-observerCallback(); //manually 1st time call it
+debouncedObserverCallback(); //manually 1st time call it
